@@ -1,8 +1,8 @@
 import 'dart:io';
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 
->>>>>>> 5d706bf998ea70e3e5c90e0b55f4c94da0028d2b
+// >>>>>>> 5d706bf998ea70e3e5c90e0b55f4c94da0028d2b
 void main() {
   Map<String, int> items = {};
   while(true){
