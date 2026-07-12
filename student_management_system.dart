@@ -20,7 +20,7 @@ class Student {
     // this.percentage = 0.0,
     // this.total_marks = 0.0,
     // this.average = 0.0,
-    // this.allStudents = const [],
+    // this.allStudents = [],
   });
   void addStudent() {
     print("Enter the name of the Student: ");
@@ -51,31 +51,18 @@ class Student {
   }
 
   void calculatepercentage_averageandmarks() {
-    print("\nEnter the ID/Roll no to calculate Percentage,Total Marks: ");
-    int? id = int.parse(stdin.readLineSync()!);
-    bool find = false;
-    int idx = 0;
-    for (int i = 0; i < allStudents.length; i++) {
-      if (allStudents[i].rollNo == id) {
-        idx = i;
-        find = true;
-        break;
-      }
-    }
-    if (find == true) {
-      for (int i = 0; i < Marks.length; i++) {
-       allStudents[idx].total_marks += allStudents[idx].Marks[i];
-      }
-      allStudents[idx].percentage = (allStudents[idx].total_marks / (allStudents[idx].total_subjects * 100)) * 100.0;
-      allStudents[idx].average = allStudents[idx].total_marks / allStudents[idx].total_subjects;
-      print("Total Marks are: ${allStudents[idx].total_marks}");
-      print("Average is: ${allStudents[idx].average}");
-      print("Total Percentage is: ${allStudents[idx].percentage}\n");
+    total_marks = 0.0;
+
+    for (double mark in Marks) {
+      total_marks += mark;
     }
 
-    if (find == false) {
-      print("Wrong ID");
-    }
+    percentage = (total_marks / (total_subjects * 100)) * 100;
+    average = total_marks / total_subjects;
+
+    print("Total Marks: $total_marks");
+    print("Average: $average");
+    print("Percentage: $percentage\n");
   }
 
   void displayAllStudentsData() {
@@ -95,7 +82,7 @@ class Student {
     bool find = false;
     int? index;
     for (int i = 0; i < allStudents.length; i++) {
-      if (rno == allStudents[i].rollNo) {
+      if (allStudents[i].rollNo == rno) {
         index = i;
         print("Student with Roll no $rno found\n");
         find = true;
@@ -165,10 +152,9 @@ void main() {
     print("1. Add Student");
     print("2. Delete Student");
     print("3. Search Student by Roll No");
-    print("4. Display Statistics of Student");
-    print("5. Update Marks");
-    print("6. Display all Students");
-    print("7. Exit");
+    print("4. Update Marks");
+    print("5. Display all Students");
+    print("6. Exit");
     print("\nPlease Select from the Menu");
     int? menu = int.parse(stdin.readLineSync()!);
     switch (menu) {
@@ -182,15 +168,12 @@ void main() {
         stu.searchStudentByRollNo();
         break;
       case 4:
-        stu.calculatepercentage_averageandmarks();
-        break;
-      case 5:
         stu.updateMarks();
         break;
-      case 6:
+      case 5:
         stu.displayAllStudentsData();
         break;
-      case 7:
+      case 6:
         print("program terminated by user");
         exit(0);
       default:
